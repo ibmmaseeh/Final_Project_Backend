@@ -13,6 +13,8 @@ public class Account {
 	private Date createdDate;
 	private STATUS status;
 	private TYPE type;
+	private String accountNumber;
+	
 	public String getId() {
 		return id;
 	}
@@ -48,6 +50,12 @@ public class Account {
 	}
 	public void setType(TYPE type) {
 		this.type = type;
+	}
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 	
 	
