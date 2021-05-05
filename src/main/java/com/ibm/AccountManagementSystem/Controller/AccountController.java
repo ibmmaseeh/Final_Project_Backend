@@ -12,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +32,7 @@ public class AccountController {
 		}
 	}
 	
-	@PostMapping("/account")
+	@PostMapping("/employee")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	String createAccount(@RequestBody @Valid Account account, BindingResult bindingResult) {
 		validateModel(bindingResult);
@@ -39,19 +40,24 @@ public class AccountController {
 		return accountService.createAccount(account);
 	}
 	
-	@GetMapping("/account")
-	List<Account> getAccounts(){
+	@PutMapping("/employee/{accountNumber}")
+	void updateBugStatus(@RequestBody @Valid Account Account, BindingResult bindingResult,@PathVariable("accountNumber") String accountNumber ) {
+		validateModel(bindingResult);
+		System.out.println(accountNumber);
+		Account.setId(accountNumber);
+		accountService.updateStatus(Account);	
+	}
+	
+	@GetMapping("/employee")
+	List<Account> getAccounts() {
 		return accountService.getAccounts();
 	}
 	
-	@GetMapping("account/{accountNumber}")
+	
+	@GetMapping("/employee/{accountNumber}")
 	Optional<Account> getAccount(@PathVariable("accountNumber") String accountNumber) {
-		return accountService.getAccount(accountNumber);
-		
+		return accountService.getAccountByAccountNumber(accountNumber);
 	}
-	
-	
-	
 	
 	
 	

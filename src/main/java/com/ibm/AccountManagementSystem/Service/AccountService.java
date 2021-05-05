@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.ibm.AccountManagementSystem.Repo.AccountRepository;
 import com.ibm.AccountManagementSystem.entity.Account;
 
+
 @Service
 public class AccountService  {
 	@Autowired
@@ -21,13 +22,20 @@ public class AccountService  {
 		return account.getId();
 	}
 
-	public List<Account> getAccounts() {
 	
-		return accountRepository.findAll() ;
+	public void updateStatus(@Valid Account account) {
+		accountRepository.save(account);
+		}
+
+
+	public Optional<Account> getAccountByAccountNumber(String accountNumber) {
+		return accountRepository.findByAccountNumber(accountNumber);
 	}
 
-	public Optional<Account> getAccount(String accountNumber) {
-	
-		return accountRepository.findById(accountNumber) ;
+
+	public List<Account> getAccounts() {
+		return accountRepository.findAll();
 	}
+		
+	
 }
