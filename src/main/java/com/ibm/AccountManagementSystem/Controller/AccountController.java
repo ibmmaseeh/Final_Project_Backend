@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ibm.AccountManagementSystem.Service.AccountService;
 import com.ibm.AccountManagementSystem.entity.Account;
+import com.ibm.AccountManagementSystem.entity.STATUS;
 
 
 @RestController
@@ -40,11 +41,11 @@ public class AccountController {
 		return accountService.createAccount(account);
 	}
 	
-	@PutMapping("/employee/{accountNumber}")
-	void updateBugStatus(@RequestBody @Valid Account Account, BindingResult bindingResult,@PathVariable("accountNumber") String accountNumber ) {
+	@PutMapping("/employee/{id}")
+	void updateBugStatus(@RequestBody @Valid Account Account, BindingResult bindingResult,@PathVariable("id") String accountId ) {
 		validateModel(bindingResult);
-		System.out.println(accountNumber);
-		Account.setId(accountNumber);
+		System.out.println(accountId);
+		Account.setId(accountId);
 		accountService.updateStatus(Account);	
 	}
 	
