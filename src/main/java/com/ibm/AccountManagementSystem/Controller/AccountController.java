@@ -49,19 +49,14 @@ public class AccountController {
 	}
 	
 	@GetMapping("/employee")
-	List<Account> getEmployees() {
+	List<Account> getAccounts() {
 		return accountService.getAccounts();
 	}
 	
-	/**
-	 * method to get details of specific employee
-	 * @param employeeId
-	 * @return zero or matching employee 
-	 */
 	
 	@GetMapping("/employee/{accountNumber}")
-	Optional<Account> getBug(@PathVariable("accountNumber") String accountNumber) {
-		return accountService.getAccount(accountNumber);
+	Optional<Account> getAccount(@PathVariable("accountNumber") String accountNumber) {
+		return accountService.getAccountByAccountNumber(accountNumber);
 	}
 	
 	
