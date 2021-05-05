@@ -13,6 +13,44 @@ public class Account {
 	private Date createdDate;
 	private STATUS status;
 	private TYPE type;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	public float getBalance() {
+		return balance;
+	}
+	public void setBalance(float balance) {
+		this.balance = balance;
+	}
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+	public STATUS getStatus() {
+		return status;
+	}
+	public void setStatus(STATUS status) {
+		this.status = status;
+	}
+	public TYPE getType() {
+		return type;
+	}
+	public void setType(TYPE type) {
+		this.type = type;
+	}
+	
+	
 	
 	
 	
