@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ibm.AccountManagementSystem.Service.AccountService;
 import com.ibm.AccountManagementSystem.entity.Account;
+import com.ibm.AccountManagementSystem.entity.STATUS;
 
 
 @RestController
@@ -41,10 +42,12 @@ public class AccountController {
 	}
 	
 	@PutMapping("/employee/{id}")
-	void updateBugStatus(@RequestBody @Valid Account Account, BindingResult bindingResult,@PathVariable("id") String accountId ) {
+	void updateStatus(@RequestBody @Valid Account Account, BindingResult bindingResult,@PathVariable("id") String accountId) {
 		validateModel(bindingResult);
 		System.out.println(accountId);
 		Account.setId(accountId);
+//		Account.setStatus(status);
+		
 		accountService.updateStatus(Account);	
 	}
 	
@@ -57,8 +60,24 @@ public class AccountController {
 	@GetMapping("/employee/{accountNumber}")
 	Optional<Account> getAccount(@PathVariable("accountNumber") String accountNumber) {
 		return accountService.getAccountByAccountNumber(accountNumber);
+	}  
+	
+	@PutMapping("/customer/{id}")
+	void updateDetails(@RequestBody @Valid Account Account, BindingResult bindingResult,@PathVariable("id") String accountId) {
+		validateModel(bindingResult);
+		System.out.println(accountId);
+		Account.setId(accountId);
+		
+		
+		accountService.updateDetails(Account);	
 	}
 	
+	@GetMapping("/customer/{accountNumber}")
+	Optional<Account> getAccountDetails(@PathVariable("accountNumber") String accountNumber) {
+		return accountService.getAccountByAccountNumber(accountNumber);
+	}  
+	
+
 	
 	
 
