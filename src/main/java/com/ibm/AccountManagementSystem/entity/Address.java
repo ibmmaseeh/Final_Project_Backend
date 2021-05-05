@@ -2,9 +2,17 @@ package com.ibm.AccountManagementSystem.entity;
 
 public class Address {
 	
+	private String houseNumber;
 	private String city;
 	private String state;
 	private int pinCode;
+	
+	public String getHouseNumber() {
+		return houseNumber;
+	}
+	public void setHouseNumber(String houseNumber) {
+		this.houseNumber = houseNumber;
+	}
 	
 	public String getCity() {
 		return city;
