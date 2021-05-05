@@ -13,6 +13,14 @@ public class Account {
 	private Date createdDate;
 	private STATUS status;
 	private TYPE type;
+	private String accountNumber;
+	
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
 	public String getId() {
 		return id;
 	}
