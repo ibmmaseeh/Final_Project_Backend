@@ -36,6 +36,12 @@ public class AccountService  {
 	public List<Account> getAccounts() {
 		return accountRepository.findAll();
 	}
+
+
+	public void updateDetails(@Valid Account account) {
+		accountRepository.save(account);
+	
+	}
 		
 	
 }

@@ -35,17 +35,19 @@ public class AccountController {
 	
 	@PostMapping("/employee")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	String createBug(@RequestBody @Valid Account account, BindingResult bindingResult) {
+	String createAccount(@RequestBody @Valid Account account, BindingResult bindingResult) {
 		validateModel(bindingResult);
 		System.out.println(account);
 		return accountService.createAccount(account);
 	}
 	
 	@PutMapping("/employee/{id}")
-	void updateBugStatus(@RequestBody @Valid Account Account, BindingResult bindingResult,@PathVariable("id") String accountId ) {
+	void updateStatus(@RequestBody @Valid Account Account, BindingResult bindingResult,@PathVariable("id") String accountId) {
 		validateModel(bindingResult);
 		System.out.println(accountId);
 		Account.setId(accountId);
+//		Account.setStatus(status);
+		
 		accountService.updateStatus(Account);	
 	}
 	
@@ -58,8 +60,24 @@ public class AccountController {
 	@GetMapping("/employee/{accountNumber}")
 	Optional<Account> getAccount(@PathVariable("accountNumber") String accountNumber) {
 		return accountService.getAccountByAccountNumber(accountNumber);
+	}  
+	
+	@PutMapping("/customer/{id}")
+	void updateDetails(@RequestBody @Valid Account Account, BindingResult bindingResult,@PathVariable("id") String accountId) {
+		validateModel(bindingResult);
+		System.out.println(accountId);
+		Account.setId(accountId);
+		
+		
+		accountService.updateDetails(Account);	
 	}
 	
+	@GetMapping("/customer/{accountNumber}")
+	Optional<Account> getAccountDetails(@PathVariable("accountNumber") String accountNumber) {
+		return accountService.getAccountByAccountNumber(accountNumber);
+	}  
+	
+
 	
 	
 

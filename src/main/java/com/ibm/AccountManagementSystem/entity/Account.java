@@ -10,6 +10,7 @@ public class Account {
 	private String id;
 	private Address address;
 	private float balance;
+
 	private Date createdDate;
 	private STATUS status;
 	private TYPE type;
@@ -57,6 +58,7 @@ public class Account {
 	public void setType(TYPE type) {
 		this.type = type;
 	}
+	
 	
 	
 	
