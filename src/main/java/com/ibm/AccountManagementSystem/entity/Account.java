@@ -15,6 +15,22 @@ public class Account {
 	private STATUS status;
 	private TYPE type;
 	private String accountNumber;
+	private String firstName;
+	private String lastName;
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
 	
 	public String getAccountNumber() {
 		return accountNumber;
