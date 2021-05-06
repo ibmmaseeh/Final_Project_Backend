@@ -2,7 +2,10 @@ package com.ibm.AccountManagementSystem.entity;
 
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+
 public class Transaction {
+	@Id
 	private String id;
 	private Date date;
 	private TRANSACTION_TYPE type;

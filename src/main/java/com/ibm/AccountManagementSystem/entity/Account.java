@@ -10,11 +10,12 @@ public class Account {
 	private String id;
 	private Address address;
 	private float balance;
-
+	private Bank bank;
 	private Date createdDate;
 	private STATUS status;
 	private TYPE type;
 	private String accountNumber;
+//	private float amount;
 	
 	public String getAccountNumber() {
 		return accountNumber;
@@ -58,6 +59,18 @@ public class Account {
 	public void setType(TYPE type) {
 		this.type = type;
 	}
+	public Bank getBank() {
+		return bank;
+	}
+	public void setBank(Bank bank) {
+		this.bank = bank;
+	}
+//	public float getAmount() {
+//		return amount;
+//	}
+//	public void setAmount(float amount) {
+//		this.amount = amount;
+//	}
 	
 	
 	
