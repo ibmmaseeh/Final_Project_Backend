@@ -28,7 +28,7 @@ public class AccountService  {
 		}
 
 
-	public Optional<Account> getAccountByAccountNumber(String accountNumber) {
+	public List<Account> getAccountByAccountNumber(String accountNumber) {
 		return accountRepository.findByAccountNumber(accountNumber);
 	}
 

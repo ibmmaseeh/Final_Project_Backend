@@ -58,7 +58,7 @@ public class AccountController {
 	
 	
 	@GetMapping("/employee/{accountNumber}")
-	Optional<Account> getAccount(@PathVariable("accountNumber") String accountNumber) {
+	List<Account> getAccount(@PathVariable("accountNumber") String accountNumber) {
 		return accountService.getAccountByAccountNumber(accountNumber);
 	}  
 	
@@ -73,7 +73,7 @@ public class AccountController {
 	}
 	
 	@GetMapping("/customer/{accountNumber}")
-	Optional<Account> getAccountDetails(@PathVariable("accountNumber") String accountNumber) {
+	List<Account> getAccountDetails(@PathVariable("accountNumber") String accountNumber) {
 		return accountService.getAccountByAccountNumber(accountNumber);
 	}  
 	
