@@ -15,7 +15,22 @@ public class Account {
 	private STATUS status;
 	private TYPE type;
 	private String accountNumber;
-//	private float amount;
+	private String firstName;
+	private String lastName;
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
 	
 	public String getAccountNumber() {
 		return accountNumber;
@@ -65,12 +80,7 @@ public class Account {
 	public void setBank(Bank bank) {
 		this.bank = bank;
 	}
-//	public float getAmount() {
-//		return amount;
-//	}
-//	public void setAmount(float amount) {
-//		this.amount = amount;
-//	}
+
 	
 	
 	
