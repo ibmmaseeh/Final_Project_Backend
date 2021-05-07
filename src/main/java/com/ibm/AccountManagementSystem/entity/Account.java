@@ -2,6 +2,10 @@ package com.ibm.AccountManagementSystem.entity;
 
 import java.util.Date;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import org.springframework.data.annotation.Id;
 
 public class Account {
@@ -10,13 +14,35 @@ public class Account {
 	private String id;
 	private Address address;
 	private float balance;
-
+	private Bank bank;
 	private Date createdDate;
+	public long getMobileNumber() {
+		return mobileNumber;
+	}
+	public void setMobileNumber(long mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	private STATUS status;
 	private TYPE type;
 	private String accountNumber;
 	private String firstName;
 	private String lastName;
+	
+	
+	@Min(1000000000)
+	@Max(9999999999L)
+	private long mobileNumber;
+	
+	@Email
+	private String email; 
+	
+	
 	
 	public String getFirstName() {
 		return firstName;
@@ -74,6 +100,13 @@ public class Account {
 	public void setType(TYPE type) {
 		this.type = type;
 	}
+	public Bank getBank() {
+		return bank;
+	}
+	public void setBank(Bank bank) {
+		this.bank = bank;
+	}
+
 	
 	
 	
