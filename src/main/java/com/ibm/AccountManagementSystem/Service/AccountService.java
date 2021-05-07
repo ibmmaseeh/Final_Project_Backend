@@ -50,8 +50,15 @@ public class AccountService  {
 	public void transaction(Account account) { 
 		accountRepository.save(account);
 		
-		
-		
+	}
+	
+	public AccountRepository getAccountRepository() {
+		return accountRepository;
+	}
+
+
+	public void setAccountRepository(AccountRepository accountRepository) {
+		this.accountRepository = accountRepository;
 		
 	}
 		
