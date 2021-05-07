@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +29,7 @@ public class AccountController {
 		}
 	}
 
+	@CrossOrigin
 	@PostMapping("/employee")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	String createAccount(@RequestBody @Valid Account account, BindingResult bindingResult) {
@@ -36,10 +38,11 @@ public class AccountController {
 		return accountService.createAccount(account);
 	}
 
+	@CrossOrigin
 	@PutMapping("/employee/{id}")
 	void updateStatus(@RequestBody @Valid Account account, BindingResult bindingResult,
 			@PathVariable("id") String accountId) {
-		validateModel(bindingResult);
+//		validateModel(bindingResult);
 		System.out.println(accountId);
 		account.setId(accountId);
 //		Account.setStatus(status);
@@ -47,11 +50,13 @@ public class AccountController {
 		accountService.updateStatus(account);
 	}
 
+	@CrossOrigin
 	@GetMapping("/employee")
 	List<Account> getAccounts() {
 		return accountService.getAccounts();
 	}
-
+	
+	@CrossOrigin
 	@GetMapping("/employee/{accountNumber}")
 	List<Account> getAccount(@PathVariable("accountNumber") String accountNumber) {
 		return accountService.getAccountByAccountNumber(accountNumber);
@@ -60,7 +65,7 @@ public class AccountController {
 	@PutMapping("/customer/{id}")
 	void updateDetails(@RequestBody @Valid Account account, BindingResult bindingResult,
 			@PathVariable("id") String accountId) {
-		validateModel(bindingResult);
+		//validateModel(bindingResult);
 		System.out.println(accountId);
 		account.setId(accountId);
 		accountService.updateDetails(account);
@@ -71,26 +76,26 @@ public class AccountController {
 		return accountService.getAccountByAccountNumber(accountNumber);
 	}
 
-	@PutMapping("/customer/transaction/withdraw/{id}/{amount}")
-	void withdraw(@RequestBody @Valid Account account, BindingResult bindingResult,
-			@PathVariable("id") String accountId, @PathVariable("amount") float amount) {
+	
+	@PutMapping("/customer/withdraw/{id}")
+	void withdraw(@RequestBody @Valid Account account, @PathVariable("id") String accountId) {
+//		if (account.getBalance() < amount) {
+//			throw new IllegalArgumentException("Insuffcient balance!");
+//		} else {
+//			float remainingBalance = account.getBalance() - amount;
+//			account.setBalance(remainingBalance);
+//		}
+		System.out.println(accountId);
 		account.setId(accountId);
-		if (account.getBalance() < amount) {
-			throw new IllegalArgumentException("Insuffcient balance!");
-		} else {
-			float remainingBalance = account.getBalance() - amount;
-			account.setBalance(remainingBalance);
-		}
-		accountService.transaction(account);
+		accountService.updateDetails(account);
 	}
 
-	@PutMapping("/customer/transaction/deposit/{id}/{amount}")
-	void deposit(@RequestBody @Valid Account account, BindingResult bindingResult, @PathVariable("id") String accountId,
-			@PathVariable("amount") float amount) {
+	@PutMapping("/customer/deposit/{id}")
+	void deposit(@RequestBody @Valid Account account, BindingResult bindingResult, @PathVariable("id") String accountId) {
+		System.out.println(accountId);
 		account.setId(accountId);
-		float remainingBalance = account.getBalance() + amount;
-		account.setBalance(remainingBalance);
-		accountService.transaction(account);
+		accountService.updateDetails(account);
+		 
 	}
 
 }
