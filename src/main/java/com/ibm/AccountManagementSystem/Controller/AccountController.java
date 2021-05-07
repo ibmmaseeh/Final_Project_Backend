@@ -67,8 +67,6 @@ public class AccountController {
 		validateModel(bindingResult);
 		System.out.println(accountId);
 		Account.setId(accountId);
-		
-		
 		accountService.updateDetails(Account);	
 	}
 	

@@ -10,13 +10,13 @@ public class Account {
 	private String id;
 	private Address address;
 	private float balance;
-
 	private Date createdDate;
 	private STATUS status;
 	private TYPE type;
 	private String accountNumber;
 	private String firstName;
 	private String lastName;
+	private Bank bank;
 	
 	public String getFirstName() {
 		return firstName;
