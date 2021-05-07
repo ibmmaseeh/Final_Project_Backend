@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.ibm.AccountManagementSystem.Repo.AccountRepository;
 import com.ibm.AccountManagementSystem.entity.Account;
+import com.ibm.AccountManagementSystem.entity.STATUS;
 
 
 @Service
@@ -39,8 +40,19 @@ public class AccountService  {
 
 
 	public void updateDetails(@Valid Account account) {
+		STATUS oldstatus= account.getStatus();
+		
 		accountRepository.save(account);
 	
+	}
+
+
+	public void transaction(Account account) { 
+		accountRepository.save(account);
+		
+		
+		
+		
 	}
 		
 	
