@@ -33,7 +33,7 @@ public class Account {
 	private String accountNumber;
 	private String firstName;
 	private String lastName;
-	private Bank bank;
+	
 	
 	@Min(1000000000)
 	@Max(9999999999L)
