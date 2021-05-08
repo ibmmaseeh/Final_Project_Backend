@@ -1,7 +1,11 @@
 package com.ibm.AccountManagementSystem.Controller;
 
 import java.util.List;
+import java.util.logging.*;
+
 import javax.validation.Valid;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -18,10 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ibm.AccountManagementSystem.Service.AccountService;
 import com.ibm.AccountManagementSystem.entity.Account;
 
+
 @RestController
 public class AccountController {
 	@Autowired
 	AccountService accountService;
+    Logger logger
+    = Logger.getLogger(AccountController.class.getName());
 
 	private void validateModel(Errors bindingResult) {
 		if (bindingResult.hasErrors()) {
@@ -34,7 +41,8 @@ public class AccountController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	String createAccount(@RequestBody @Valid Account account, BindingResult bindingResult) {
 		validateModel(bindingResult);
-		System.out.println(account);
+		logger.log(Level.INFO,account.toString());
+//		System.out.println(account);
 		return accountService.createAccount(account);
 	}
 
@@ -43,7 +51,8 @@ public class AccountController {
 	void updateStatus(@RequestBody @Valid Account account, BindingResult bindingResult,
 			@PathVariable("id") String accountId) {
 //		validateModel(bindingResult);
-		System.out.println(accountId);
+		logger.log(Level.INFO,accountId);
+//		System.out.println(accountId);
 		account.setId(accountId);
 //		Account.setStatus(status);
 
@@ -53,12 +62,14 @@ public class AccountController {
 	@CrossOrigin
 	@GetMapping("/employee")
 	List<Account> getAccounts() {
+		logger.info("All accounts are listed");
 		return accountService.getAccounts();
 	}
 	
 	@CrossOrigin
 	@GetMapping("/employee/{accountNumber}")
 	List<Account> getAccount(@PathVariable("accountNumber") String accountNumber) {
+		logger.log(Level.INFO,"Details listed for account number "+accountNumber);
 		return accountService.getAccountByAccountNumber(accountNumber);
 	}
 	
@@ -67,7 +78,8 @@ public class AccountController {
 	void updateDetails(@RequestBody @Valid Account account, BindingResult bindingResult,
 			@PathVariable("id") String accountId) {
 		//validateModel(bindingResult);
-		System.out.println(accountId);
+//		System.out.println(accountId);
+		logger.log(Level.INFO," Customer details updated");
 		account.setId(accountId);
 		accountService.updateDetails(account);
 	}
@@ -75,6 +87,7 @@ public class AccountController {
 	@CrossOrigin
 	@GetMapping("/customer/{accountNumber}")
 	List<Account> getAccountDetails(@PathVariable("accountNumber") String accountNumber) {
+		logger.info("Details listed for account number "+accountNumber);
 		return accountService.getAccountByAccountNumber(accountNumber);
 	}
 
@@ -87,14 +100,16 @@ public class AccountController {
 //			float remainingBalance = account.getBalance() - amount;
 //			account.setBalance(remainingBalance);
 //		}
-		System.out.println(accountId);
+		//System.out.println(accountId);
+		logger.log(Level.INFO,accountId);
 		account.setId(accountId);
 		accountService.updateDetails(account);
 	}
 
 	@PutMapping("/customer/deposit/{id}")
 	void deposit(@RequestBody @Valid Account account, BindingResult bindingResult, @PathVariable("id") String accountId) {
-		System.out.println(accountId);
+		// System.out.println(accountId);
+		logger.log(Level.INFO,accountId);
 		account.setId(accountId);
 		accountService.updateDetails(account);
 		 
