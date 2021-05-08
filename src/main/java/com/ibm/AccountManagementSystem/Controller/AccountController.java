@@ -61,7 +61,8 @@ public class AccountController {
 	List<Account> getAccount(@PathVariable("accountNumber") String accountNumber) {
 		return accountService.getAccountByAccountNumber(accountNumber);
 	}
-
+	
+	@CrossOrigin
 	@PutMapping("/customer/{id}")
 	void updateDetails(@RequestBody @Valid Account account, BindingResult bindingResult,
 			@PathVariable("id") String accountId) {
@@ -71,6 +72,7 @@ public class AccountController {
 		accountService.updateDetails(account);
 	}
 
+	@CrossOrigin
 	@GetMapping("/customer/{accountNumber}")
 	List<Account> getAccountDetails(@PathVariable("accountNumber") String accountNumber) {
 		return accountService.getAccountByAccountNumber(accountNumber);
