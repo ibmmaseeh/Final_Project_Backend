@@ -27,7 +27,8 @@ import com.ibm.AccountManagementSystem.entity.Account;
 public class AccountController {
 	@Autowired
 	AccountService accountService;
-    Logger logger
+    
+	Logger logger
     = Logger.getLogger(AccountController.class.getName());
 
 	private void validateModel(Errors bindingResult) {
@@ -36,6 +37,12 @@ public class AccountController {
 		}
 	}
 
+	/**
+	 * method to create new account of the customer by the employee
+	 * @param account
+	 * @param bindingResult
+	 * @return newly created account object
+	 */
 	@CrossOrigin
 	@PostMapping("/employee")
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -46,6 +53,12 @@ public class AccountController {
 		return accountService.createAccount(account);
 	}
 
+	/**
+	 * method to update the specific account
+	 * @param account
+	 * @param bindingResult
+	 * @param accountId
+	 */
 	@CrossOrigin
 	@PutMapping("/employee/{id}")
 	void updateStatus(@RequestBody @Valid Account account, BindingResult bindingResult,
@@ -59,6 +72,10 @@ public class AccountController {
 		accountService.updateStatus(account);
 	}
 
+	/**
+	 * method to get all the accounts 
+	 * @return all the accounts in the database
+	 */
 	@CrossOrigin
 	@GetMapping("/employee")
 	List<Account> getAccounts() {
@@ -66,6 +83,11 @@ public class AccountController {
 		return accountService.getAccounts();
 	}
 	
+	/**
+	 * method to return specific account details
+	 * @param accountNumber
+	 * @return details of the specific account details
+	 */
 	@CrossOrigin
 	@GetMapping("/employee/{accountNumber}")
 	List<Account> getAccount(@PathVariable("accountNumber") String accountNumber) {
@@ -73,6 +95,12 @@ public class AccountController {
 		return accountService.getAccountByAccountNumber(accountNumber);
 	}
 	
+	/**
+	 * method to update the customer details by the customer
+	 * @param account
+	 * @param bindingResult
+	 * @param accountId
+	 */
 	@CrossOrigin
 	@PutMapping("/customer/{id}")
 	void updateDetails(@RequestBody @Valid Account account, BindingResult bindingResult,
@@ -84,6 +112,11 @@ public class AccountController {
 		accountService.updateDetails(account);
 	}
 
+	/**
+	 * method to get the details of the specific customer account
+	 * @param accountNumber
+	 * @return details of the account by specifying the account details
+	 */
 	@CrossOrigin
 	@GetMapping("/customer/{accountNumber}")
 	List<Account> getAccountDetails(@PathVariable("accountNumber") String accountNumber) {
@@ -91,7 +124,11 @@ public class AccountController {
 		return accountService.getAccountByAccountNumber(accountNumber);
 	}
 
-	
+	/**
+	 * method to perform the customer withdrawl
+	 * @param account
+	 * @param accountId
+	 */
 	@PutMapping("/customer/withdraw/{id}")
 	void withdraw(@RequestBody @Valid Account account, @PathVariable("id") String accountId) {
 //		if (account.getBalance() < amount) {
@@ -106,6 +143,12 @@ public class AccountController {
 		accountService.updateDetails(account);
 	}
 
+	/**
+	 * method to perform the customer deposit
+	 * @param account
+	 * @param bindingResult
+	 * @param accountId
+	 */
 	@PutMapping("/customer/deposit/{id}")
 	void deposit(@RequestBody @Valid Account account, BindingResult bindingResult, @PathVariable("id") String accountId) {
 		// System.out.println(accountId);
