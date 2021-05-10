@@ -32,6 +32,7 @@ class AccountServiceTest {
 	void testCreateAccount() {
 		String accountId = accountService.createAccount(account);
 		assertNotNull(accountId);
+		assertEquals("11223344", account.getAccountNumber());
 	}
 	
 	/*
@@ -54,5 +55,6 @@ class AccountServiceTest {
 		assertNotNull(accountList);
  		assertEquals("234fdserg34", accountList.get(0).getId());
 	}
+	
 
 }
